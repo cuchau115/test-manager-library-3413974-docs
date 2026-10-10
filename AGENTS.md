@@ -332,11 +332,11 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 - [*] `APP-01` Scaffold Vite + React 18 + estructura de carpetas; `VITE_API_URL`. · deps:— · ev:`docker compose build app` o `npm run build` sin errores · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:303ad56
 - [*] `APP-02` Cliente HTTP único (`fetch`): base URL, `Authorization: Bearer`, manejo de cuerpo de error único. · deps:APP-01 · ev:`npm run build` ok; el cliente tipa `{code,message,details}` · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:d59cb35
-- [ ] `APP-03` Login + guardado de token + redirección en 401. · deps:APP-02 · ev:login manual contra API levanta el token y entra al panel · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-04` Layout y control de visibilidad por rol (`admin`/`librarian`). · deps:APP-03 · ev:con rol librarian no se ven acciones solo-admin · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-05` Catálogo: lista, búsqueda por texto, filtro por categoría, paginación. · deps:APP-04 · ev:recorrido manual responde con la lista y el total · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
+- [*] `APP-03` Login + guardado de token + redirección en 401. · deps:APP-02 · ev:login manual contra API levanta el token y entra al panel · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:04640d8
+- [*] `APP-04` Layout y control de visibilidad por rol (`admin`/`librarian`). · deps:APP-03 · ev:con rol librarian no se ven acciones solo-admin · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:e9b3141
+- [*] `APP-05` Catálogo: lista, búsqueda por texto, filtro por categoría, paginación. · deps:APP-04 · ev:recorrido manual responde con la lista y el total · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:f5dd8aa
 - [ ] `APP-06` Libro: crear/editar/baja + subir/quitar portada (solo admin). · deps:APP-05 · ev:crear libro y subir PNG funciona; baja desaparece del catálogo · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-07` Socios: lista, búsqueda, crear. · deps:APP-04 · ev:crear socio y verlo en la lista · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
+- [*] `APP-07` Socios: lista, búsqueda, crear. · deps:APP-04 · ev:crear socio y verlo en la lista · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:bce9dc7
 - [ ] `APP-08` Prestar: elegir socio y de 1 a 3 libros; mostrar errores de negocio (409/422). · deps:APP-07,APP-05 · ev:prestar 2 libros ok; repetir libro → mensaje de error del contrato · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
 - [ ] `APP-09` Préstamos: listar con filtros, ver detalle, devolver una línea. · deps:APP-08 · ev:devolver una línea actualiza el detalle y el estado · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
 - [ ] `APP-10` Vencidos + Reporte más prestados. · deps:APP-09 · ev:vencidos y reporte muestran datos del sembrador · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
@@ -414,3 +414,7 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 11:22 | big-pickle (found) | T-01.5 | PENDIENTE → FINALIZADO | 046716f | CORS por CORS_ORIGIN; ACAO exacto + preflight 204 |
 | 2026-10-10 11:23 | big-pickle (found) | T-01.4 | PENDIENTE → FINALIZADO | ca6c89b | /health y /api/v1/health → {"status":"ok"} |
 | 2026-10-10 11:25 | big-pickle (found) | INFRA-02 | PENDIENTE → EN PROGRESO | 565f331 | solo servicio api; falta app/page |
+| 2026-10-10 11:45 | big-pickle (app) | APP-03 | PENDIENTE → FINALIZADO | 04640d8 | login, token en storage, 401 → /login |
+| 2026-10-10 11:47 | big-pickle (app) | APP-04 | PENDIENTE → FINALIZADO | e9b3141 | layout + visibilidad por rol (adminOnly) |
+| 2026-10-10 11:49 | big-pickle (app) | APP-05 | PENDIENTE → FINALIZADO | f5dd8aa | catálogo: q, categoría, paginación |
+| 2026-10-10 11:51 | big-pickle (app) | APP-07 | PENDIENTE → FINALIZADO | bce9dc7 | socios: lista, búsqueda, alta, DOCUMENT_TAKEN |
