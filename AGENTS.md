@@ -446,6 +446,6 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 14:23 | tool-load-test | T-16.11 | PENDIENTE → FINALIZADO | ee29dde | con 5,000 libros: cinco búsquedas, máximo 19.8 ms, promedio 18.3 ms; 4,957 registros temporales dados de baja |
 | 2026-10-10 14:25 | api-bootstrap | Integración de administrador | BLOQUEADO → VERIFICADO | fc6c601,1fc0b64 | el arranque promueve únicamente el usuario configurado y actualiza su contraseña; prueba de idempotencia y rol |
 | 2026-10-10 14:32 | api-http-contract | T-16.10,T-19.1 | VERIFICADO | 0572e50 | suite sobre volumen ya sembrado: 104 pruebas, 597 assertions; identificadores aleatorios evitan colisiones |
-| 2026-10-10 14:37 | api/infra | Error GET / | CORREGIDO | 48102e3,9303a29 | `SESSION_DRIVER=file` evita consultar la tabla inexistente; raíz responde `200 {"status":"ok"}`; `APP_DEBUG=false` |
+| 2026-10-10 14:37 | api/infra | Error GET / | CORREGIDO | 48102e3,9303a29 | `SESSION_DRIVER=file` evita consultar la tabla inexistente; raíz responde `200 {"status":"ok"}`; `APP_DEBUG=false`; API 104 pruebas/598 assertions verdes |
 | 2026-10-10 13:39 | big-pickle (infra) | INFRA-02 | EN PROGRESO → FINALIZADO | 4862ce0 | compose incluye api/app/page; configuración validada y build de app/page correcto |
 | 2026-10-10 13:41 | big-pickle (infra) | INFRA-03 | PENDIENTE → EN PROGRESO | 6e09314 | red explícita y healthchecks de db/api/app/page; pendiente verificación `healthy` |
