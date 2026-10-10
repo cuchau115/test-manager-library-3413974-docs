@@ -313,8 +313,8 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.6 WS `api-tests` — contrato, arquitectura y concurrencia (repo `api`)
 
-- [*] `T-16.10` Prueba de contrato que recorre **todas** las rutas de `api-contract.md` y **todos** los códigos de §2. · deps:T-17.1 · ev:runner Docker: 102 tests y 587 assertions verdes · model:`opencode/deepseek-v4-pro` · agente:api-http-contract · commit:de26756
-- [*] `T-19.1` Prueba de arquitectura global (Art. I, II y III) ejecutable. · deps:T-17.1 · ev:runner Docker incluye pruebas de aislamiento de arquitectura y suite verde · model:`opencode/deepseek-v4-pro` · agente:api-http-contract · commit:de26756
+- [*] `T-16.10` Prueba de contrato que recorre **todas** las rutas de `api-contract.md` y **todos** los códigos de §2. · deps:T-17.1 · ev:`.\scripts\test-docker.ps1`: 104 pruebas y 597 assertions verdes contra PostgreSQL ya poblado · model:`opencode/deepseek-v4-pro` · agente:api-http-contract · commit:de26756,0572e50
+- [*] `T-19.1` Prueba de arquitectura global (Art. I, II y III) ejecutable. · deps:T-17.1 · ev:`.\scripts\test-docker.ps1`: pruebas de aislamiento de arquitectura y suite completa (104/597) verdes · model:`opencode/deepseek-v4-pro` · agente:api-http-contract · commit:de26756,0572e50
 - [*] `T-18.1` Bajar `ck_book_total_positive` a la migración. · deps:T-02.1 · ev:PostgreSQL rechaza un `INSERT` con `total_copies=0` · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:6e5c3f2
 - [*] `T-18.2` Bajar `ck_user_role` a la migración. · deps:T-02.1 · ev:PostgreSQL rechaza un `INSERT` con rol inválido · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:6e5c3f2
 - [*] `T-16.11` Prueba de contrato con el sembrador de carga (RNF-1: búsqueda <300 ms con 5000 libros). · deps:TOOL-02 · ev:`docker compose --profile tool run --rm --entrypoint node tool src/load-test.mjs`: cinco búsquedas, máximo 19.8 ms y promedio 18.3 ms; limpieza lógica segura de 4,957 libros · model:`opencode/deepseek-v4-pro` · agente:tool-load-test · commit:ee29dde
@@ -445,5 +445,6 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 14:21 | big-pickle (infra) | INFRA-05,INFRA-06 | EN PROGRESO → FINALIZADO | 46e6296 | script Docker de login→préstamo→devolución→reporte reproducido |
 | 2026-10-10 14:23 | tool-load-test | T-16.11 | PENDIENTE → FINALIZADO | ee29dde | con 5,000 libros: cinco búsquedas, máximo 19.8 ms, promedio 18.3 ms; 4,957 registros temporales dados de baja |
 | 2026-10-10 14:25 | api-bootstrap | Integración de administrador | BLOQUEADO → VERIFICADO | fc6c601,1fc0b64 | el arranque promueve únicamente el usuario configurado y actualiza su contraseña; prueba de idempotencia y rol |
+| 2026-10-10 14:32 | api-http-contract | T-16.10,T-19.1 | VERIFICADO | 0572e50 | suite sobre volumen ya sembrado: 104 pruebas, 597 assertions; identificadores aleatorios evitan colisiones |
 | 2026-10-10 13:39 | big-pickle (infra) | INFRA-02 | EN PROGRESO → FINALIZADO | 4862ce0 | compose incluye api/app/page; configuración validada y build de app/page correcto |
 | 2026-10-10 13:41 | big-pickle (infra) | INFRA-03 | PENDIENTE → EN PROGRESO | 6e09314 | red explícita y healthchecks de db/api/app/page; pendiente verificación `healthy` |
