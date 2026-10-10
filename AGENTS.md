@@ -330,8 +330,8 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.8 WS `app` — frontend React (repo `app`)
 
-- [ ] `APP-01` Scaffold Vite + React 18 + estructura de carpetas; `VITE_API_URL`. · deps:— · ev:`docker compose build app` o `npm run build` sin errores · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-02` Cliente HTTP único (`fetch`): base URL, `Authorization: Bearer`, manejo de cuerpo de error único. · deps:APP-01 · ev:`npm run build` ok; el cliente tipa `{code,message,details}` · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
+- [*] `APP-01` Scaffold Vite + React 18 + estructura de carpetas; `VITE_API_URL`. · deps:— · ev:`docker compose build app` o `npm run build` sin errores · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:303ad56
+- [*] `APP-02` Cliente HTTP único (`fetch`): base URL, `Authorization: Bearer`, manejo de cuerpo de error único. · deps:APP-01 · ev:`npm run build` ok; el cliente tipa `{code,message,details}` · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:d59cb35
 - [ ] `APP-03` Login + guardado de token + redirección en 401. · deps:APP-02 · ev:login manual contra API levanta el token y entra al panel · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
 - [ ] `APP-04` Layout y control de visibilidad por rol (`admin`/`librarian`). · deps:APP-03 · ev:con rol librarian no se ven acciones solo-admin · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
 - [ ] `APP-05` Catálogo: lista, búsqueda por texto, filtro por categoría, paginación. · deps:APP-04 · ev:recorrido manual responde con la lista y el total · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
@@ -340,7 +340,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 - [ ] `APP-08` Prestar: elegir socio y de 1 a 3 libros; mostrar errores de negocio (409/422). · deps:APP-07,APP-05 · ev:prestar 2 libros ok; repetir libro → mensaje de error del contrato · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
 - [ ] `APP-09` Préstamos: listar con filtros, ver detalle, devolver una línea. · deps:APP-08 · ev:devolver una línea actualiza el detalle y el estado · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
 - [ ] `APP-10` Vencidos + Reporte más prestados. · deps:APP-09 · ev:vencidos y reporte muestran datos del sembrador · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-11` `app/Dockerfile` (build + servir estáticos). · deps:APP-01 · ev:`docker compose build app` ok · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
+- [*] `APP-11` `app/Dockerfile` (build + servir estáticos). · deps:APP-01 · ev:`docker compose build app` ok · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:52493d6
 
 ### 9.9 WS `page` — sitio público estático (repo `page`)
 
@@ -404,6 +404,12 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 10:58 | big-pickle (page) | PAGE-02 | PENDIENTE → FINALIZADO | 743aa75 | secciones de presentación |
 | 2026-10-10 10:59 | big-pickle (page) | PAGE-03 | PENDIENTE → FINALIZADO | aab4a68 | responsive 375/1440 |
 | 2026-10-10 11:00 | big-pickle (page) | PAGE-04 | PENDIENTE → FINALIZADO | fcf1e0c | Dockerfile nginx; build OK |
+| 2026-10-10 11:20 | big-pickle (found) | T-01.3 | PENDIENTE → FINALIZADO | 843133f | config/library.php + .env.example; sin secretos en git |
+| 2026-10-10 11:22 | big-pickle (found) | T-01.5 | PENDIENTE → FINALIZADO | 046716f | CORS por CORS_ORIGIN; ACAO exacto + preflight 204 |
+| 2026-10-10 11:23 | big-pickle (found) | T-01.4 | PENDIENTE → FINALIZADO | ca6c89b | /health y /api/v1/health → {"status":"ok"} |
+| 2026-10-10 11:35 | big-pickle (app) | APP-01 | PENDIENTE → FINALIZADO | 303ad56 | Vite + React 18; `npm run build` OK |
+| 2026-10-10 11:37 | big-pickle (app) | APP-02 | PENDIENTE → FINALIZADO | d59cb35 | cliente fetch único; ApiError {code,message,details} |
+| 2026-10-10 11:39 | big-pickle (app) | APP-11 | PENDIENTE → FINALIZADO | 52493d6 | Dockerfile multi-stage + nginx |
 | 2026-10-10 11:20 | big-pickle (found) | T-01.3 | PENDIENTE → FINALIZADO | 843133f | config/library.php + .env.example; sin secretos en git |
 | 2026-10-10 11:22 | big-pickle (found) | T-01.5 | PENDIENTE → FINALIZADO | 046716f | CORS por CORS_ORIGIN; ACAO exacto + preflight 204 |
 | 2026-10-10 11:23 | big-pickle (found) | T-01.4 | PENDIENTE → FINALIZADO | ca6c89b | /health y /api/v1/health → {"status":"ok"} |
