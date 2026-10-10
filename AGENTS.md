@@ -237,7 +237,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.0 DOC — documentación y ADRs (repo `docs`)
 
-- [ ] `DOC-01` Crear `spec-react-laravel/` (README, arquitectura, plan-tecnologico, mapeo-spec, ADR-RL-001…005) **mapeando `spec-python/` y `spec-.net/`** a Laravel/React. · deps:— · ev: existe la carpeta y `spec-react-laravel/arquitectura.md` cita Art. I–III · model:`opencode/glm-5.3-flash` · agente:— · commit:—
+- [*] `DOC-01` Crear `spec-react-laravel/` (README, arquitectura, plan-tecnologico, mapeo-spec, ADR-RL-001…005) **mapeando `spec-python/` y `spec-.net/`** a Laravel/React. · deps:— · ev: existe la carpeta y `spec-react-laravel/arquitectura.md` cita Art. I–III · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:a6a4f5a
 - [ ] `DOC-02` ADR-RL-006: cómo el `tool` produce 3 préstamos vencidos sin SQL directo (ver §11, decisión abierta). · deps:DOC-01 · ev: ADR escrito con alternativas y decisión · model:`opencode/glm-5.3-flash` · agente:— · commit:—
 - [ ] `DOC-03` ADR-RL-007: estrategia de ramas/worktrees para trabajo en paralelo. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:— · commit:—
 - [ ] `DOC-04` ADR-RL-008: ruta de salud (`/health` y `/api/v1/health`) — ver §11. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:— · commit:—
@@ -392,4 +392,4 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 
 | Fecha/hora | Agente (modelo) | Tarea | De `→` a | Commit | Nota |
 |---|---|---|---|---|---|
-| — | — | — | — | — | — |
+| 2026-10-10 10:40 | big-pickle (scribe) | DOC-01 | PENDIENTE → FINALIZADO | a6a4f5a | `spec-react-laravel/` creado (9 archivos); arquitectura cita Art. I–III |
