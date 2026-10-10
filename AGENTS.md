@@ -247,9 +247,9 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 - [*] `T-01.1` Scaffold Laravel 11 + carpetas hexagonales (`app/Domain`, `Application/Ports`, `Application/Services`, `Infrastructure/*`, `Http`, `Providers`). · deps:— · ev:`docker compose run --rm api php artisan --version` imprime `Laravel Framework 11.x` · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:45b5dd5
 - [*] `T-01.2` `api/Dockerfile` (php:8.3-fpm + nginx) y assets de arranque. · deps:T-01.1 · ev:`docker compose build api` termina sin error · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:67560c0
-- [ ] `T-01.3` `.env.example` y `config/*`: `DATABASE_URL`,`JWT_SECRET`,`ADMIN_USERNAME`,`ADMIN_PASSWORD`,`COVERS_DIR`,`CORS_ORIGIN`,`APP_URL`. · deps:T-01.1 · ev: app arranca sin claves en el repo (`git grep -i secret` sin hallazgos) · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
-- [ ] `T-01.4` `GET /health` y `GET /api/v1/health` → `{"status":"ok"}` (públicas). · deps:T-01.2 · ev:`curl -s localhost:8000/api/v1/health` → `{"status":"ok"}` · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
-- [ ] `T-01.5` CORS por `CORS_ORIGIN`. · deps:T-01.3 · ev:petición con `Origin` recibe cabecera `Access-Control-Allow-Origin` exacta · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
+- [*] `T-01.3` `.env.example` y `config/*`: `DATABASE_URL`,`JWT_SECRET`,`ADMIN_USERNAME`,`ADMIN_PASSWORD`,`COVERS_DIR`,`CORS_ORIGIN`,`APP_URL`. · deps:T-01.1 · ev: app arranca sin claves en el repo (`git grep -i secret` sin hallazgos) · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:843133f
+- [*] `T-01.4` `GET /health` y `GET /api/v1/health` → `{"status":"ok"}` (públicas). · deps:T-01.2 · ev:`curl -s localhost:8000/api/v1/health` → `{"status":"ok"}` · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:ca6c89b
+- [*] `T-01.5` CORS por `CORS_ORIGIN`. · deps:T-01.3 · ev:petición con `Origin` recibe cabecera `Access-Control-Allow-Origin` exacta · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:046716f
 
 ### 9.2 WS `api-domain` — dominio (repo `api`, PHP puro, Art. I)
 
@@ -322,7 +322,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 ### 9.7 WS `infra` — contenedores y orquestación (repo `infra`)
 
 - [*] `INFRA-01` `docker-compose.yml`: servicio `db` (postgres:16 **vacío**), sin `CREATE TABLE`. · deps:— · ev:`docker compose up db` arranca; `psql` no muestra tablas en `library` · model:`opencode/deepseek-v4-pro` · agente:infra (big-pickle) · commit:d14b6ac
-- [ ] `INFRA-02` Servicios `api`,`app`,`page` referenciando los Dockerfiles de `../api`,`../app`,`../page`. · deps:T-01.2,APP-11,PAGE-04,INFRA-01 · ev:`docker compose build` termina sin error · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
+- [/] `INFRA-02` Servicios `api`,`app`,`page` referenciando los Dockerfiles de `../api`,`../app`,`../page`. · deps:T-01.2,APP-11,PAGE-04,INFRA-01 · ev:`docker compose build` termina sin error · model:`opencode/deepseek-v4-pro` · agente:found (big-pickle) · commit:565f331 · PARCIAL: servicio `api` ya en compose y build OK; falta `app` (necesita APP-11) y `page`.
 - [ ] `INFRA-03` Red, volúmenes (`db-data`, `covers`) y healthchecks. · deps:INFRA-02 · ev:`docker compose ps` muestra `healthy` en `db` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 - [*] `INFRA-04` `.env` de compose (sin secretos reales; placeholders) + `.env.example`. · deps:INFRA-01 · ev:`git grep -iE 'password|secret' -- ':!*.example'` no revela secretos reales · model:`opencode/deepseek-v4-pro` · agente:infra (big-pickle) · commit:183eb8c
 - [ ] `INFRA-05` README de arranque: **un** comando levanta todo (migraciones + admin). · deps:INFRA-03,T-17.3 · ev:`docker compose up --build` desde `infra` deja el sistema operativo; `/health` responde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
@@ -404,3 +404,7 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 10:58 | big-pickle (page) | PAGE-02 | PENDIENTE → FINALIZADO | 743aa75 | secciones de presentación |
 | 2026-10-10 10:59 | big-pickle (page) | PAGE-03 | PENDIENTE → FINALIZADO | aab4a68 | responsive 375/1440 |
 | 2026-10-10 11:00 | big-pickle (page) | PAGE-04 | PENDIENTE → FINALIZADO | fcf1e0c | Dockerfile nginx; build OK |
+| 2026-10-10 11:20 | big-pickle (found) | T-01.3 | PENDIENTE → FINALIZADO | 843133f | config/library.php + .env.example; sin secretos en git |
+| 2026-10-10 11:22 | big-pickle (found) | T-01.5 | PENDIENTE → FINALIZADO | 046716f | CORS por CORS_ORIGIN; ACAO exacto + preflight 204 |
+| 2026-10-10 11:23 | big-pickle (found) | T-01.4 | PENDIENTE → FINALIZADO | ca6c89b | /health y /api/v1/health → {"status":"ok"} |
+| 2026-10-10 11:25 | big-pickle (found) | INFRA-02 | PENDIENTE → EN PROGRESO | 565f331 | solo servicio api; falta app/page |
