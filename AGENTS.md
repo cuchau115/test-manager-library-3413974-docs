@@ -284,9 +284,9 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.4 WS `api-adapters` — adaptadores (repo `api`)
 
-- [*] `T-02.1` Migración inicial: 6 tablas (`category`,`book`,`member`,`loan`,`loan_item`,`user`) con columnas de `data-model.md` §3 y **sin `DEFAULT`**. · deps:T-01.2 · ev:consulta §10 de `data-model.md` devuelve lo documentado · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:a922a6f
-- [*] `T-02.2` FKs (§5) e índices únicos (§4), incluido el índice parcial de ISBN sobre activos. · deps:T-02.1 · ev:`pg_indexes`/`pg_constraint` coinciden con §4–§5 · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:a922a6f
-- [*] `T-02.3` Semilla de las 5 categorías con UUID fijos (§9). · deps:T-02.1 · ev:`GET /api/v1/categories` devuelve 5 filas ordenadas por nombre · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:a922a6f
+- [*] `T-02.1` Migración inicial: 6 tablas (`category`,`book`,`member`,`loan`,`loan_item`,`user`) con columnas de `data-model.md` §3 y **sin `DEFAULT`**. · deps:T-01.2 · ev:consulta §10 de `data-model.md` devuelve lo documentado · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:6e5c3f2
+- [*] `T-02.2` FKs (§5) e índices únicos (§4), incluido el índice parcial de ISBN sobre activos. · deps:T-02.1 · ev:`pg_indexes`/`pg_constraint` coinciden con §4–§5 · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:6e5c3f2
+- [*] `T-02.3` Semilla de las 5 categorías con UUID fijos (§9). · deps:T-02.1 · ev:`GET /api/v1/categories` devuelve 5 filas ordenadas por nombre · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:6e5c3f2
 - [ ] `T-12.1` Modelos Eloquent + `BookRepository` (mapeo dominio↔Eloquent) incl. `version`. · deps:T-02.2,T-08.1 · ev:`php artisan test --filter=BookRepositoryTest` verde contra PostgreSQL real · model:`opencode/qwen3-coder` · agente:— · commit:—
 - [ ] `T-12.2` `MemberRepository` y `UserRepository`. · deps:T-02.2,T-08.6 · ev:`php artisan test --filter=MemberUserRepositoryTest` verde · model:`opencode/qwen3-coder` · agente:— · commit:—
 - [ ] `T-13.1` `LoanRepository` (guardar préstamo + líneas en una transacción). · deps:T-12.1,T-09.1 · ev:`php artisan test --filter=LoanRepositoryTest` verde · model:`opencode/qwen3-coder` · agente:— · commit:—
@@ -426,7 +426,7 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 11:59 | big-pickle (app) | APP-09 | PENDIENTE → FINALIZADO | 59a4756 | prestamos: filtros, detalle, devolver linea |
 | 2026-10-10 12:01 | big-pickle (app) | APP-10 | PENDIENTE → FINALIZADO | ad1aa17 | vencidos + reporte mas prestados (admin) |
 | 2026-10-10 16:45 | big-pickle (app) | APP-01…APP-11 (E2E) | verificación adicional | — | mock del contrato + Chromium/Playwright: 17/17 curl + 15/15 navegador, 0 errores de consola; evidencia en `spec-react-laravel/evidence/app-e2e/` |
-| 2026-10-10 17:30 | big-pickle (adapters) | T-02.1,T-02.2,T-02.3 | PENDIENTE → FINALIZADO | a922a6f | migración esquema library (6 tablas, FKs, índices parciales, check, 5 categorías seed) |
+| 2026-10-10 17:30 | big-pickle (adapters) | T-02.1,T-02.2,T-02.3 | PENDIENTE → FINALIZADO | 6e5c3f2 | migración esquema library (6 tablas, FKs, índices parciales, check, 5 categorías seed; seed corregido + checks total≥1 y role) |
 | 2026-10-10 17:35 | big-pickle (application) | T-07.1 | PENDIENTE → FINALIZADO | 873662d | definir los nueve puertos de salida y su aislamiento |
 | 2026-10-10 17:36 | big-pickle (application) | T-07.2,T-07.3 | PENDIENTE → FINALIZADO | 7d3d326 | login y creación de bibliotecarios con validación de rol |
 | 2026-10-10 17:37 | big-pickle (application) | T-08.1…T-08.6 | PENDIENTE → FINALIZADO | cea45e8 | servicios de gestión de libros y socios (CRUD, stock, portada) |
