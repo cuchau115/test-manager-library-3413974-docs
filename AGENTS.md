@@ -238,15 +238,15 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 ### 9.0 DOC — documentación y ADRs (repo `docs`)
 
 - [*] `DOC-01` Crear `spec-react-laravel/` (README, arquitectura, plan-tecnologico, mapeo-spec, ADR-RL-001…005) **mapeando `spec-python/` y `spec-.net/`** a Laravel/React. · deps:— · ev: existe la carpeta y `spec-react-laravel/arquitectura.md` cita Art. I–III · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:a6a4f5a
-- [ ] `DOC-02` ADR-RL-006: cómo el `tool` produce 3 préstamos vencidos sin SQL directo (ver §11, decisión abierta). · deps:DOC-01 · ev: ADR escrito con alternativas y decisión · model:`opencode/glm-5.3-flash` · agente:— · commit:—
-- [ ] `DOC-03` ADR-RL-007: estrategia de ramas/worktrees para trabajo en paralelo. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:— · commit:—
-- [ ] `DOC-04` ADR-RL-008: ruta de salud (`/health` y `/api/v1/health`) — ver §11. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:— · commit:—
+- [*] `DOC-02` ADR-RL-006: cómo el `tool` produce 3 préstamos vencidos sin SQL directo (ver §11, decisión abierta). · deps:DOC-01 · ev: ADR escrito con alternativas y decisión · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:6d36dfe
+- [*] `DOC-03` ADR-RL-007: estrategia de ramas/worktrees para trabajo en paralelo. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:233f51b
+- [*] `DOC-04` ADR-RL-008: ruta de salud (`/health` y `/api/v1/health`) — ver §11. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:e6bca8a
 - [ ] `DOC-05` Tras T-18: actualizar `spec-python/data-model.md` §4 moviendo `ck_book_total_positive` y `ck_user_role` de `pendiente` a `motor` (Art. X). · deps:T-18.1,T-18.2 · ev: §4 sin marcas `pendiente` para esas reglas · model:`opencode/glm-5.3-flash` · agente:— · commit:—
 
 ### 9.1 WS `api-found` — fundaciones del backend (repo `api`)
 
-- [ ] `T-01.1` Scaffold Laravel 11 + carpetas hexagonales (`app/Domain`, `Application/Ports`, `Application/Services`, `Infrastructure/*`, `Http`, `Providers`). · deps:— · ev:`docker compose run --rm api php artisan --version` imprime `Laravel Framework 11.x` · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
-- [ ] `T-01.2` `api/Dockerfile` (php:8.3-fpm + nginx) y assets de arranque. · deps:T-01.1 · ev:`docker compose build api` termina sin error · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
+- [*] `T-01.1` Scaffold Laravel 11 + carpetas hexagonales (`app/Domain`, `Application/Ports`, `Application/Services`, `Infrastructure/*`, `Http`, `Providers`). · deps:— · ev:`docker compose run --rm api php artisan --version` imprime `Laravel Framework 11.x` · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:45b5dd5
+- [*] `T-01.2` `api/Dockerfile` (php:8.3-fpm + nginx) y assets de arranque. · deps:T-01.1 · ev:`docker compose build api` termina sin error · model:`opencode/deepseek-v4-flash` · agente:found (big-pickle) · commit:67560c0
 - [ ] `T-01.3` `.env.example` y `config/*`: `DATABASE_URL`,`JWT_SECRET`,`ADMIN_USERNAME`,`ADMIN_PASSWORD`,`COVERS_DIR`,`CORS_ORIGIN`,`APP_URL`. · deps:T-01.1 · ev: app arranca sin claves en el repo (`git grep -i secret` sin hallazgos) · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
 - [ ] `T-01.4` `GET /health` y `GET /api/v1/health` → `{"status":"ok"}` (públicas). · deps:T-01.2 · ev:`curl -s localhost:8000/api/v1/health` → `{"status":"ok"}` · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
 - [ ] `T-01.5` CORS por `CORS_ORIGIN`. · deps:T-01.3 · ev:petición con `Origin` recibe cabecera `Access-Control-Allow-Origin` exacta · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
@@ -321,10 +321,10 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.7 WS `infra` — contenedores y orquestación (repo `infra`)
 
-- [ ] `INFRA-01` `docker-compose.yml`: servicio `db` (postgres:16 **vacío**), sin `CREATE TABLE`. · deps:— · ev:`docker compose up db` arranca; `psql` no muestra tablas en `library` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
+- [*] `INFRA-01` `docker-compose.yml`: servicio `db` (postgres:16 **vacío**), sin `CREATE TABLE`. · deps:— · ev:`docker compose up db` arranca; `psql` no muestra tablas en `library` · model:`opencode/deepseek-v4-pro` · agente:infra (big-pickle) · commit:d14b6ac
 - [ ] `INFRA-02` Servicios `api`,`app`,`page` referenciando los Dockerfiles de `../api`,`../app`,`../page`. · deps:T-01.2,APP-11,PAGE-04,INFRA-01 · ev:`docker compose build` termina sin error · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 - [ ] `INFRA-03` Red, volúmenes (`db-data`, `covers`) y healthchecks. · deps:INFRA-02 · ev:`docker compose ps` muestra `healthy` en `db` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `INFRA-04` `.env` de compose (sin secretos reales; placeholders) + `.env.example`. · deps:INFRA-01 · ev:`git grep -iE 'password|secret' -- ':!*.example'` no revela secretos reales · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
+- [*] `INFRA-04` `.env` de compose (sin secretos reales; placeholders) + `.env.example`. · deps:INFRA-01 · ev:`git grep -iE 'password|secret' -- ':!*.example'` no revela secretos reales · model:`opencode/deepseek-v4-pro` · agente:infra (big-pickle) · commit:183eb8c
 - [ ] `INFRA-05` README de arranque: **un** comando levanta todo (migraciones + admin). · deps:INFRA-03,T-17.3 · ev:`docker compose up --build` desde `infra` deja el sistema operativo; `/health` responde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 - [ ] `INFRA-06` Verificación end-to-end documentada (login→prestar→devolver→reporte). · deps:INFRA-05,APP-10,TOOL-03 · ev:transcripción de comandos/curl reproducible · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 
@@ -344,10 +344,10 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.9 WS `page` — sitio público estático (repo `page`)
 
-- [ ] `PAGE-01` Estructura base (HTML/CSS) + assets. · deps:— · ev:se abre `index.html` sin la API · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
-- [ ] `PAGE-02` Secciones: qué es, qué construye el spec, stack (React/Laravel/Docker), cómo correr. · deps:PAGE-01 · ev:contenido completo visible · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
-- [ ] `PAGE-03` Responsive móvil y escritorio. · deps:PAGE-02 · ev:correcto a 375 px y 1440 px · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
-- [ ] `PAGE-04` `page/Dockerfile` (nginx). · deps:PAGE-01 · ev:`docker compose build page` ok · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
+- [*] `PAGE-01` Estructura base (HTML/CSS) + assets. · deps:— · ev:se abre `index.html` sin la API · model:`opencode/deepseek-v4-flash` · agente:page (big-pickle) · commit:2485326
+- [*] `PAGE-02` Secciones: qué es, qué construye el spec, stack (React/Laravel/Docker), cómo correr. · deps:PAGE-01 · ev:contenido completo visible · model:`opencode/deepseek-v4-flash` · agente:page (big-pickle) · commit:743aa75
+- [*] `PAGE-03` Responsive móvil y escritorio. · deps:PAGE-02 · ev:correcto a 375 px y 1440 px · model:`opencode/deepseek-v4-flash` · agente:page (big-pickle) · commit:aab4a68
+- [*] `PAGE-04` `page/Dockerfile` (nginx). · deps:PAGE-01 · ev:`docker compose build page` ok · model:`opencode/deepseek-v4-flash` · agente:page (big-pickle) · commit:fcf1e0c
 
 ### 9.10 WS `tool` — sembrador de demostración (repo `tool`)
 
@@ -393,3 +393,14 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | Fecha/hora | Agente (modelo) | Tarea | De `→` a | Commit | Nota |
 |---|---|---|---|---|---|
 | 2026-10-10 10:40 | big-pickle (scribe) | DOC-01 | PENDIENTE → FINALIZADO | a6a4f5a | `spec-react-laravel/` creado (9 archivos); arquitectura cita Art. I–III |
+| 2026-10-10 10:55 | big-pickle (found) | T-01.1 | PENDIENTE → FINALIZADO | 45b5dd5 | Laravel 11.57.0 + carpetas hexagonales |
+| 2026-10-10 10:58 | big-pickle (found) | T-01.2 | PENDIENTE → FINALIZADO | 67560c0 | Dockerfile php8.3-fpm + nginx; build OK |
+| 2026-10-10 10:52 | big-pickle (infra) | INFRA-01 | PENDIENTE → FINALIZADO | d14b6ac | postgres:16 vacío, `\dt` sin relaciones |
+| 2026-10-10 10:54 | big-pickle (infra) | INFRA-04 | PENDIENTE → FINALIZADO | 183eb8c | `.env.example` con placeholders |
+| 2026-10-10 10:53 | big-pickle (scribe) | DOC-02 | PENDIENTE → FINALIZADO | 6d36dfe | ADR-RL-006 sembrado de vencidos |
+| 2026-10-10 10:54 | big-pickle (scribe) | DOC-03 | PENDIENTE → FINALIZADO | 233f51b | ADR-RL-007 ramas y worktrees |
+| 2026-10-10 10:56 | big-pickle (scribe) | DOC-04 | PENDIENTE → FINALIZADO | e6bca8a | ADR-RL-008 rutas de salud |
+| 2026-10-10 10:57 | big-pickle (page) | PAGE-01 | PENDIENTE → FINALIZADO | 2485326 | estructura base estática |
+| 2026-10-10 10:58 | big-pickle (page) | PAGE-02 | PENDIENTE → FINALIZADO | 743aa75 | secciones de presentación |
+| 2026-10-10 10:59 | big-pickle (page) | PAGE-03 | PENDIENTE → FINALIZADO | aab4a68 | responsive 375/1440 |
+| 2026-10-10 11:00 | big-pickle (page) | PAGE-04 | PENDIENTE → FINALIZADO | fcf1e0c | Dockerfile nginx; build OK |
