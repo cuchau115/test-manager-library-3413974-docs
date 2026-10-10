@@ -291,10 +291,10 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 - [*] `T-12.2` `MemberRepository` y `UserRepository`. · deps:T-02.2,T-08.6 · ev:`php artisan test --filter=MemberUserRepositoryTest` verde · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:741e0ec
 - [*] `T-13.1` `LoanRepository` (guardar préstamo + líneas en una transacción). · deps:T-12.1,T-09.1 · ev:`php artisan test --filter=LoanRepositoryTest` verde · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:48bc1e8
 - [*] `T-13.2` Concurrencia optimista: `UPDATE book … WHERE version = :leida`; conflicto → `BOOK_NOT_AVAILABLE`. · deps:T-13.1 · ev:`php artisan test --filter=ConcurrencyTest` verde: dos préstamos del último ejemplar → uno 201, otro 409 (RNF-2) · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:48bc1e8
-- [ ] `T-14.1` `PasswordHasher` Argon2id. · deps:T-07.1 · ev:`php artisan test --filter=ArgonPasswordHasherTest` verde · model:`opencode/qwen3-coder` · agente:— · commit:—
-- [ ] `T-14.2` `TokenIssuer` JWT HS256 (8 h, `sub` + `role`, clave de entorno). · deps:T-07.1 · ev:`php artisan test --filter=JwtTokenIssuerTest` verde; el token no incluye `password` · model:`opencode/qwen3-coder` · agente:— · commit:—
-- [ ] `T-15.1` `CoverStorage` en disco (`COVERS_DIR`, clave opaca). · deps:T-07.1,T-08.5 · ev:`php artisan test --filter=DiskCoverStorageTest` verde · model:`opencode/qwen3-coder` · agente:— · commit:—
-- [ ] `T-15.2` Validación de imagen por contenido (JPG/PNG, ≤2 MB) y borrado en orden (anular `cover_key`, confirmar, borrar binario). · deps:T-15.1 · ev:`php artisan test --filter=CoverValidationTest` verde (2 MB ok, 3 MB → 422) · model:`opencode/qwen3-coder` · agente:— · commit:—
+- [*] `T-14.1` `PasswordHasher` Argon2id. · deps:T-07.1 · ev:`php artisan test --filter=ArgonPasswordHasherTest` verde · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:0da01ad
+- [*] `T-14.2` `TokenIssuer` JWT HS256 (8 h, `sub` + `role`, clave de entorno). · deps:T-07.1 · ev:`php artisan test --filter=JwtTokenIssuerTest` verde; el token no incluye `password` · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:0da01ad
+- [*] `T-15.1` `CoverStorage` en disco (`COVERS_DIR`, clave opaca). · deps:T-07.1,T-08.5 · ev:`php artisan test --filter=DiskCoverStorageTest` verde · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:0da01ad
+- [*] `T-15.2` Validación de imagen por contenido (JPG/PNG, ≤2 MB) y borrado en orden (anular `cover_key`, confirmar, borrar binario). · deps:T-15.1 · ev:`php artisan test --filter=CoverValidationTest` verde (2 MB ok, 3 MB → 422) · model:`opencode/qwen3-coder` · agente:adapters (big-pickle) · commit:0da01ad
 
 ### 9.5 WS `api-http` — HTTP y composición (repo `api`)
 
@@ -435,3 +435,4 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 12:18 | big-pickle (tool) | TOOL-01 | PENDIENTE → FINALIZADO | f131932 | cliente API + script base del sembrador; 6/6 pruebas en Docker OK |
 | 2026-10-10 18:30 | big-pickle (adapters) | T-12.1,T-12.2 | PENDIENTE → FINALIZADO | 741e0ec | modelos Eloquent + repos Book/Member/User + CategoryReader + CompositionServiceProvider |
 | 2026-10-10 19:15 | big-pickle (adapters) | T-13.1,T-13.2 | PENDIENTE → FINALIZADO | 48bc1e8 | LoanRepository + concurrencia optimista (version column) |
+| 2026-10-10 19:45 | big-pickle (adapters) | T-14.1,T-14.2,T-15.1,T-15.2 | PENDIENTE → FINALIZADO | 0da01ad | Argon2id, JWT HS256, DiskCoverStorage con validación JPG/PNG ≤2MB |
