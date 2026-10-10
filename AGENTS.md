@@ -253,17 +253,17 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.2 WS `api-domain` — dominio (repo `api`, PHP puro, Art. I)
 
-- [ ] `T-03.1` Objeto de valor `Isbn` (13 dígitos). · deps:T-01.1 · ev:`php artisan test --filter=IsbnTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-03.2` Objeto de valor `Quantity` (>0, disponibles en rango). · deps:T-03.1 · ev:`php artisan test --filter=QuantityTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-03.3` Objeto de valor `DateRange` (fin ≥ inicio). · deps:T-03.1 · ev:`php artisan test --filter=DateRangeTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-03.4` Errores de dominio base (`DomainError` y derivados; sin framework). · deps:T-01.1 · ev:existen `BookNotAvailable`,`MemberHasOverdue`,`MemberLimitExceeded`,`ItemAlreadyReturned` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-04.1` Agregado `Book` (`withdraw`,`restock`, baja lógica, total ≥1, disponibles 0..total). · deps:T-03.2,T-03.4 · ev:`php artisan test --filter=BookTest` verde (nunca <0 ni >total) · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-05.1` `LoanItem` + `Loan::addItem` (1..3 líneas, sin libro repetido, congela título/ISBN/categoría). · deps:T-04.1 · ev:`php artisan test --filter=LoanAddItemTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-05.2` `Loan::returnItem` (una vez por línea) + estado calculado (`open`/`overdue`/`closed`). · deps:T-05.1 · ev:`php artisan test --filter=LoanReturnTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-05.3` Vencimiento `loaned_at + 14 días` y máximo 3 sin devolver por socio (con `Clock` falso). · deps:T-05.1 · ev:`php artisan test --filter=LoanLimitTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-06.1` Agregado `Member` (`DocumentNumber` obligatorio). · deps:T-03.4 · ev:`php artisan test --filter=MemberTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-06.2` Agregado `User` + enum `Role` (`admin`,`librarian`) + normalización de `username` (minúsculas, recortado). · deps:T-03.4 · ev:`php artisan test --filter=UserTest` verde: `"Ana "` → `ana` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-06.3` Prueba de arquitectura: `app/Domain` no importa `Illuminate\*`. · deps:T-04.1,T-06.2 · ev:`php artisan test --filter=DomainIsolationTest` verde y falla si se añade un `use Illuminate` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
+- [*] `T-03.1` Objeto de valor `Isbn` (13 dígitos). · deps:T-01.1 · ev:`php artisan test --filter=IsbnTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:f2cbd05
+- [*] `T-03.2` Objeto de valor `Quantity` (>0, disponibles en rango). · deps:T-03.1 · ev:`php artisan test --filter=QuantityTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:f2cbd05
+- [*] `T-03.3` Objeto de valor `DateRange` (fin ≥ inicio). · deps:T-03.1 · ev:`php artisan test --filter=DateRangeTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:f2cbd05
+- [*] `T-03.4` Errores de dominio base (`DomainError` y derivados; sin framework). · deps:T-01.1 · ev:existen `BookNotAvailable`,`MemberHasOverdue`,`MemberLimitExceeded`,`ItemAlreadyReturned` · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:3bb70eb
+- [*] `T-04.1` Agregado `Book` (`withdraw`,`restock`, baja lógica, total ≥1, disponibles 0..total). · deps:T-03.2,T-03.4 · ev:`php artisan test --filter=BookTest` verde (nunca <0 ni >total) · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:bf5b9fe
+- [*] `T-05.1` `LoanItem` + `Loan::addItem` (1..3 líneas, sin libro repetido, congela título/ISBN/categoría). · deps:T-04.1 · ev:`php artisan test --filter=LoanAddItemTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:4ed77a9
+- [*] `T-05.2` `Loan::returnItem` (una vez por línea) + estado calculado (`open`/`overdue`/`closed`). · deps:T-05.1 · ev:`php artisan test --filter=LoanReturnTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:4ed77a9
+- [*] `T-05.3` Vencimiento `loaned_at + 14 días` y máximo 3 sin devolver por socio (con `Clock` falso). · deps:T-05.1 · ev:`php artisan test --filter=LoanLimitTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:4ed77a9
+- [*] `T-06.1` Agregado `Member` (`DocumentNumber` obligatorio). · deps:T-03.4 · ev:`php artisan test --filter=MemberTest` verde · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:4c86693
+- [*] `T-06.2` Agregado `User` + enum `Role` (`admin`,`librarian`) + normalización de `username` (minúsculas, recortado). · deps:T-03.4 · ev:`php artisan test --filter=UserTest` verde: `"Ana "` → `ana` · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:4c86693
+- [*] `T-06.3` Prueba de arquitectura: `app/Domain` no importa `Illuminate\*`. · deps:T-04.1,T-06.2 · ev:`php artisan test --filter=DomainIsolationTest` verde y falla si se añade un `use Illuminate` · model:`opencode/deepseek-v4-pro` · agente:domain (big-pickle) · commit:c2e49d9
 
 ### 9.3 WS `api-app` — puertos y casos de uso (repo `api`, Art. II)
 
@@ -410,11 +410,14 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 11:35 | big-pickle (app) | APP-01 | PENDIENTE → FINALIZADO | 303ad56 | Vite + React 18; `npm run build` OK |
 | 2026-10-10 11:37 | big-pickle (app) | APP-02 | PENDIENTE → FINALIZADO | d59cb35 | cliente fetch único; ApiError {code,message,details} |
 | 2026-10-10 11:39 | big-pickle (app) | APP-11 | PENDIENTE → FINALIZADO | 52493d6 | Dockerfile multi-stage + nginx |
-| 2026-10-10 11:20 | big-pickle (found) | T-01.3 | PENDIENTE → FINALIZADO | 843133f | config/library.php + .env.example; sin secretos en git |
-| 2026-10-10 11:22 | big-pickle (found) | T-01.5 | PENDIENTE → FINALIZADO | 046716f | CORS por CORS_ORIGIN; ACAO exacto + preflight 204 |
-| 2026-10-10 11:23 | big-pickle (found) | T-01.4 | PENDIENTE → FINALIZADO | ca6c89b | /health y /api/v1/health → {"status":"ok"} |
 | 2026-10-10 11:25 | big-pickle (found) | INFRA-02 | PENDIENTE → EN PROGRESO | 565f331 | solo servicio api; falta app/page |
 | 2026-10-10 11:45 | big-pickle (app) | APP-03 | PENDIENTE → FINALIZADO | 04640d8 | login, token en storage, 401 → /login |
 | 2026-10-10 11:47 | big-pickle (app) | APP-04 | PENDIENTE → FINALIZADO | e9b3141 | layout + visibilidad por rol (adminOnly) |
 | 2026-10-10 11:49 | big-pickle (app) | APP-05 | PENDIENTE → FINALIZADO | f5dd8aa | catálogo: q, categoría, paginación |
 | 2026-10-10 11:51 | big-pickle (app) | APP-07 | PENDIENTE → FINALIZADO | bce9dc7 | socios: lista, búsqueda, alta, DOCUMENT_TAKEN |
+| 2026-10-10 12:06 | big-pickle (domain) | T-03.1,T-03.2,T-03.3 | PENDIENTE → FINALIZADO | f2cbd05 | VOs Isbn/Quantity/DateRange con pruebas |
+| 2026-10-10 12:07 | big-pickle (domain) | T-03.4 | PENDIENTE → FINALIZADO | 3bb70eb | DomainError + códigos de negocio |
+| 2026-10-10 12:08 | big-pickle (domain) | T-04.1 | PENDIENTE → FINALIZADO | bf5b9fe | Book: withdraw/restock/changeTotal/baja lógica |
+| 2026-10-10 12:09 | big-pickle (domain) | T-05.1,T-05.2,T-05.3 | PENDIENTE → FINALIZADO | 4ed77a9 | Loan + LoanItem: líneas congeladas, devolución, estado, 14 días |
+| 2026-10-10 12:10 | big-pickle (domain) | T-06.1,T-06.2 | PENDIENTE → FINALIZADO | 4c86693 | Member, User, enum Role, normalización username |
+| 2026-10-10 12:11 | big-pickle (domain) | T-06.3 | PENDIENTE → FINALIZADO | c2e49d9 | DomainIsolationTest: app/Domain sin Illuminate (47 tests verdes) |
