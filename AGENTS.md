@@ -322,8 +322,8 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 ### 9.7 WS `infra` — contenedores y orquestación (repo `infra`)
 
 - [*] `INFRA-01` `docker-compose.yml`: servicio `db` (postgres:16 **vacío**), sin `CREATE TABLE`. · deps:— · ev:`docker compose up db` arranca; `psql` no muestra tablas en `library` · model:`opencode/deepseek-v4-pro` · agente:infra (big-pickle) · commit:d14b6ac
-- [/] `INFRA-02` Servicios `api`,`app`,`page` referenciando los Dockerfiles de `../api`,`../app`,`../page`. · deps:T-01.2,APP-11,PAGE-04,INFRA-01 · ev:`docker compose build` termina sin error · model:`opencode/deepseek-v4-pro` · agente:found (big-pickle) · commit:565f331 · PARCIAL: servicio `api` ya en compose y build OK; falta `app` (necesita APP-11) y `page`.
-- [ ] `INFRA-03` Red, volúmenes (`db-data`, `covers`) y healthchecks. · deps:INFRA-02 · ev:`docker compose ps` muestra `healthy` en `db` · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
+- [*] `INFRA-02` Servicios `api`,`app`,`page` referenciando los Dockerfiles de `../api`,`../app`,`../page`. · deps:T-01.2,APP-11,PAGE-04,INFRA-01 · ev:`docker compose config --quiet` y `docker compose build app page` pasan · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:4862ce0
+- [/] `INFRA-03` Red, volúmenes (`db-data`, `covers`) y healthchecks. · deps:INFRA-02 · ev:`docker compose ps` muestra servicios `healthy` · model:`opencode/deepseek-v4-pro` · agente:big-pickle (13:39) · commit:6e09314 · falta validar el stack integrado
 - [*] `INFRA-04` `.env` de compose (sin secretos reales; placeholders) + `.env.example`. · deps:INFRA-01 · ev:`git grep -iE 'password|secret' -- ':!*.example'` no revela secretos reales · model:`opencode/deepseek-v4-pro` · agente:infra (big-pickle) · commit:183eb8c
 - [ ] `INFRA-05` README de arranque: **un** comando levanta todo (migraciones + admin). · deps:INFRA-03,T-17.3 · ev:`docker compose up --build` desde `infra` deja el sistema operativo; `/health` responde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 - [ ] `INFRA-06` Verificación end-to-end documentada (login→prestar→devolver→reporte). · deps:INFRA-05,APP-10,TOOL-03 · ev:transcripción de comandos/curl reproducible · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
@@ -439,3 +439,5 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 20:30 | big-pickle (http) | T-16.1…T-17.3 | PENDIENTE → FINALIZADO | 86af7ec | middleware JWT, controladores, recursos, rutas /api/v1, entrypoint con migraciones/admin |
 | 2026-10-10 13:31 | big-pickle (tool) | TOOL-02,TOOL-03 | PENDIENTE → EN PROGRESO | 955d681 | sembrado paginado/idempotente; 7/7 pruebas Docker verdes; pendiente integración con API real |
 | 2026-10-10 13:37 | big-pickle (verificador) | T-18.1,T-18.2,DOC-05 | PENDIENTE → FINALIZADO | 95fd16d | checks confirmados por PostgreSQL y reglas del modelo marcadas como motor |
+| 2026-10-10 13:39 | big-pickle (infra) | INFRA-02 | EN PROGRESO → FINALIZADO | 4862ce0 | compose incluye api/app/page; configuración validada y build de app/page correcto |
+| 2026-10-10 13:41 | big-pickle (infra) | INFRA-03 | PENDIENTE → EN PROGRESO | 6e09314 | red explícita y healthchecks de db/api/app/page; pendiente verificación `healthy` |
