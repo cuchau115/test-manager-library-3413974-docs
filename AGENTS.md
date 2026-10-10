@@ -351,7 +351,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.10 WS `tool` — sembrador de demostración (repo `tool`)
 
-- [ ] `TOOL-01` Cliente API + script base (login admin, llamadas a endpoints). · deps:DOC-02 · ev:script hace login y salud ok contra la API · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
+- [*] `TOOL-01` Cliente API + script base (login admin, llamadas a endpoints). · deps:DOC-02 · ev:`docker compose run --rm tool-tests` + `node --test` en el repo `tool` son verdes · model:`opencode/deepseek-v4-flash` · agente:big-pickle · commit:f131932
 - [ ] `TOOL-02` Sembrar ≥40 libros y 10 socios. · deps:TOOL-01,T-16.6 · ev:tras correrlo, `GET /books` reporta ≥40 y `GET /members` 10 · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
 - [ ] `TOOL-03` 15 préstamos + 3 vencidos (según ADR-RL-006). · deps:TOOL-02,T-16.7 · ev:tras correrlo, `GET /loans/overdue` devuelve 3 líneas y el reporte tiene filas · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
 - [ ] `TOOL-04` `tool/Dockerfile` y entrada en compose (perfil opcional). · deps:TOOL-03 · ev:`docker compose run --rm tool` corre el sembrador · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
@@ -432,3 +432,4 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 17:37 | big-pickle (application) | T-08.1…T-08.6 | PENDIENTE → FINALIZADO | cea45e8 | servicios de gestión de libros y socios (CRUD, stock, portada) |
 | 2026-10-10 17:38 | big-pickle (application) | T-09.1,T-10.1,T-10.2,T-11.1 | PENDIENTE → FINALIZADO | 40c69cc | servicios de préstamos, devoluciones, vencidos y reporte |
 | 2026-10-10 17:39 | big-pickle (application) | T-11.2 | PENDIENTE → FINALIZADO | 3a62753 | prueba de aislamiento: app/Application no importa Infrastructure |
+| 2026-10-10 12:18 | big-pickle (tool) | TOOL-01 | PENDIENTE → FINALIZADO | f131932 | cliente API + script base del sembrador; 6/6 pruebas en Docker OK |
