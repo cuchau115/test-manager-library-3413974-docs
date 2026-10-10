@@ -425,3 +425,4 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 11:57 | big-pickle (app) | APP-08 | PENDIENTE → FINALIZADO | fa93cd7 | prestar 1..3 libros; errores 409/422 del contrato |
 | 2026-10-10 11:59 | big-pickle (app) | APP-09 | PENDIENTE → FINALIZADO | 59a4756 | prestamos: filtros, detalle, devolver linea |
 | 2026-10-10 12:01 | big-pickle (app) | APP-10 | PENDIENTE → FINALIZADO | ad1aa17 | vencidos + reporte mas prestados (admin) |
+| 2026-10-10 16:45 | big-pickle (app) | APP-01…APP-11 (E2E) | verificación adicional | — | mock del contrato + Chromium/Playwright: 17/17 curl + 15/15 navegador, 0 errores de consola; evidencia en `spec-react-laravel/evidence/app-e2e/` |
