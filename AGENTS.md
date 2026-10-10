@@ -335,11 +335,11 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 - [*] `APP-03` Login + guardado de token + redirección en 401. · deps:APP-02 · ev:login manual contra API levanta el token y entra al panel · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:04640d8
 - [*] `APP-04` Layout y control de visibilidad por rol (`admin`/`librarian`). · deps:APP-03 · ev:con rol librarian no se ven acciones solo-admin · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:e9b3141
 - [*] `APP-05` Catálogo: lista, búsqueda por texto, filtro por categoría, paginación. · deps:APP-04 · ev:recorrido manual responde con la lista y el total · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:f5dd8aa
-- [ ] `APP-06` Libro: crear/editar/baja + subir/quitar portada (solo admin). · deps:APP-05 · ev:crear libro y subir PNG funciona; baja desaparece del catálogo · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
+- [*] `APP-06` Libro: crear/editar/baja + subir/quitar portada (solo admin). · deps:APP-05 · ev:crear libro y subir PNG funciona; baja desaparece del catálogo · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:89451c3
 - [*] `APP-07` Socios: lista, búsqueda, crear. · deps:APP-04 · ev:crear socio y verlo en la lista · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:bce9dc7
-- [ ] `APP-08` Prestar: elegir socio y de 1 a 3 libros; mostrar errores de negocio (409/422). · deps:APP-07,APP-05 · ev:prestar 2 libros ok; repetir libro → mensaje de error del contrato · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-09` Préstamos: listar con filtros, ver detalle, devolver una línea. · deps:APP-08 · ev:devolver una línea actualiza el detalle y el estado · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
-- [ ] `APP-10` Vencidos + Reporte más prestados. · deps:APP-09 · ev:vencidos y reporte muestran datos del sembrador · model:`opencode/gemini-3.6-flash` · agente:— · commit:—
+- [*] `APP-08` Prestar: elegir socio y de 1 a 3 libros; mostrar errores de negocio (409/422). · deps:APP-07,APP-05 · ev:prestar 2 libros ok; repetir libro → mensaje de error del contrato · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:fa93cd7
+- [*] `APP-09` Préstamos: listar con filtros, ver detalle, devolver una línea. · deps:APP-08 · ev:devolver una línea actualiza el detalle y el estado · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:59a4756
+- [*] `APP-10` Vencidos + Reporte más prestados. · deps:APP-09 · ev:vencidos y reporte muestran datos del sembrador · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:ad1aa17
 - [*] `APP-11` `app/Dockerfile` (build + servir estáticos). · deps:APP-01 · ev:`docker compose build app` ok · model:`opencode/gemini-3.6-flash` · agente:app (big-pickle) · commit:52493d6
 
 ### 9.9 WS `page` — sitio público estático (repo `page`)
@@ -421,3 +421,7 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 12:09 | big-pickle (domain) | T-05.1,T-05.2,T-05.3 | PENDIENTE → FINALIZADO | 4ed77a9 | Loan + LoanItem: líneas congeladas, devolución, estado, 14 días |
 | 2026-10-10 12:10 | big-pickle (domain) | T-06.1,T-06.2 | PENDIENTE → FINALIZADO | 4c86693 | Member, User, enum Role, normalización username |
 | 2026-10-10 12:11 | big-pickle (domain) | T-06.3 | PENDIENTE → FINALIZADO | c2e49d9 | DomainIsolationTest: app/Domain sin Illuminate (47 tests verdes) |
+| 2026-10-10 11:55 | big-pickle (app) | APP-06 | PENDIENTE → FINALIZADO | 89451c3 | CRUD libros + portada (blob) solo admin |
+| 2026-10-10 11:57 | big-pickle (app) | APP-08 | PENDIENTE → FINALIZADO | fa93cd7 | prestar 1..3 libros; errores 409/422 del contrato |
+| 2026-10-10 11:59 | big-pickle (app) | APP-09 | PENDIENTE → FINALIZADO | 59a4756 | prestamos: filtros, detalle, devolver linea |
+| 2026-10-10 12:01 | big-pickle (app) | APP-10 | PENDIENTE → FINALIZADO | ad1aa17 | vencidos + reporte mas prestados (admin) |
