@@ -317,7 +317,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 - [*] `T-19.1` Prueba de arquitectura global (Art. I, II y III) ejecutable. · deps:T-17.1 · ev:runner Docker incluye pruebas de aislamiento de arquitectura y suite verde · model:`opencode/deepseek-v4-pro` · agente:api-http-contract · commit:de26756
 - [*] `T-18.1` Bajar `ck_book_total_positive` a la migración. · deps:T-02.1 · ev:PostgreSQL rechaza un `INSERT` con `total_copies=0` · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:6e5c3f2
 - [*] `T-18.2` Bajar `ck_user_role` a la migración. · deps:T-02.1 · ev:PostgreSQL rechaza un `INSERT` con rol inválido · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:6e5c3f2
-- [*] `T-16.11` Prueba de contrato con el sembrador de carga (RNF-1: búsqueda <300 ms con 5000 libros). · deps:TOOL-02 · ev:`docker compose --profile tool run --rm --entrypoint node tool src/load-test.mjs`: cinco búsquedas, máximo 20.3 ms y promedio 18.8 ms; limpieza lógica de 4,957 libros · model:`opencode/deepseek-v4-pro` · agente:tool-load-test · commit:737643b
+- [*] `T-16.11` Prueba de contrato con el sembrador de carga (RNF-1: búsqueda <300 ms con 5000 libros). · deps:TOOL-02 · ev:`docker compose --profile tool run --rm --entrypoint node tool src/load-test.mjs`: cinco búsquedas, máximo 19.8 ms y promedio 18.3 ms; limpieza lógica segura de 4,957 libros · model:`opencode/deepseek-v4-pro` · agente:tool-load-test · commit:ee29dde
 
 ### 9.7 WS `infra` — contenedores y orquestación (repo `infra`)
 
@@ -441,8 +441,9 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 13:37 | big-pickle (verificador) | T-18.1,T-18.2,DOC-05 | PENDIENTE → FINALIZADO | 95fd16d | checks confirmados por PostgreSQL y reglas del modelo marcadas como motor |
 | 2026-10-10 13:46 | api-http-contract | T-16.10,T-19.1 | PENDIENTE → FINALIZADO | de26756 | suite Docker: 102 pruebas, 587 assertions; contrato, esquema y arquitectura |
 | 2026-10-10 13:51 | big-pickle (infra/tool) | INFRA-03,INFRA-05,TOOL-04 | avance | 40691ad,37e1aa1 | stack completo healthy y perfil de herramienta integrado; login real evidenció rol librarian en el usuario bootstrap |
-| 2026-10-10 14:20 | big-pickle (integración) | TOOL-02,TOOL-03,TOOL-04 | EN PROGRESO → FINALIZADO | 440169e | bootstrap corregido en API; siembra real: 40 libros, 10 socios, 15 préstamos, 3 vencidos; segunda ejecución idempotente |
+| 2026-10-10 14:20 | big-pickle (integración) | TOOL-02,TOOL-03,TOOL-04 | EN PROGRESO → FINALIZADO | 440169e | bootstrap corregido en API (fc6c601); siembra real: 40 libros, 10 socios, 15 préstamos, 3 vencidos; segunda ejecución idempotente |
 | 2026-10-10 14:21 | big-pickle (infra) | INFRA-05,INFRA-06 | EN PROGRESO → FINALIZADO | 46e6296 | script Docker de login→préstamo→devolución→reporte reproducido |
-| 2026-10-10 14:23 | tool-load-test | T-16.11 | PENDIENTE → FINALIZADO | 737643b | con 5,000 libros: cinco búsquedas, máximo 20.3 ms, promedio 18.8 ms; 4,957 registros temporales dados de baja |
+| 2026-10-10 14:23 | tool-load-test | T-16.11 | PENDIENTE → FINALIZADO | ee29dde | con 5,000 libros: cinco búsquedas, máximo 19.8 ms, promedio 18.3 ms; 4,957 registros temporales dados de baja |
+| 2026-10-10 14:25 | api-bootstrap | Integración de administrador | BLOQUEADO → VERIFICADO | fc6c601,1fc0b64 | el arranque promueve únicamente el usuario configurado y actualiza su contraseña; prueba de idempotencia y rol |
 | 2026-10-10 13:39 | big-pickle (infra) | INFRA-02 | EN PROGRESO → FINALIZADO | 4862ce0 | compose incluye api/app/page; configuración validada y build de app/page correcto |
 | 2026-10-10 13:41 | big-pickle (infra) | INFRA-03 | PENDIENTE → EN PROGRESO | 6e09314 | red explícita y healthchecks de db/api/app/page; pendiente verificación `healthy` |
