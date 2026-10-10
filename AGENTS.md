@@ -47,8 +47,19 @@ ejecutarla y cómo commitearla. No se asume memoria de ningún chat anterior.
 
 ## 2. Fuentes de verdad (el spec)
 
-Repositorio `test-manager-library-3413974-docs`, carpeta **`spec-python/`** (elegida como base).
-Se lee en este orden:
+Repositorio `test-manager-library-3413974-docs`. Contiene **dos specs del mismo negocio**, uno por
+tecnología de origen:
+
+- **`spec-python/`** (FastAPI/SQLAlchemy/Alembic/pytest) — **elegida como base**: `spec.md`,
+  `data-model.md` y `api-contract.md` son idénticos en ambas, así que el negocio no cambia.
+- **`spec-.net/`** (ASP.NET/EF Core) — misma constitución, HU, CA, RN, RNF, modelo y contrato; solo
+  difiere lo tecnológico (`constitution.md`, `plan.md`).
+
+**El reto no se hace en Python ni en .NET, sino en React + PHP/Laravel** (decisión ya tomada): hay que
+**traducir el spec** a ese stack. La carpeta `spec-react-laravel/` (más abajo) es esa traducción.
+
+Se lee en este orden (base `spec-python/`; si una regla de negocio difiriera de `spec-.net/`, gana
+`spec-python/` y la diferencia se anota):
 
 | Documento | Ruta | Para qué |
 |---|---|---|
@@ -67,8 +78,9 @@ Traducción al stack del reto (decisión ya tomada): carpeta **`spec-react-larav
 crea; es requisito previo de todo el código.
 
 **Regla de oro:** lo que el spec dice de **negocio** se respeta literal; lo que dice de **tecnología**
-(FastAPI/SQLAlchemy/Alembic/pytest) se traduce a Laravel/React sin cambiar el comportamiento
-observable. `data-model.md` y `api-contract.md` se implementan **sin cambios**.
+(FastAPI/SQLAlchemy/Alembic/pytest del spec Python, o ASP.NET/EF Core del spec .NET) se traduce a
+**Laravel/React** sin cambiar el comportamiento observable. `data-model.md` y `api-contract.md` se
+implementan **sin cambios**.
 
 ---
 
@@ -225,7 +237,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 ### 9.0 DOC — documentación y ADRs (repo `docs`)
 
-- [ ] `DOC-01` Crear `spec-react-laravel/` (README, arquitectura, plan-tecnologico, mapeo-spec, ADR-RL-001…005) leyendo `spec-python/`. · deps:— · ev: existe la carpeta y `spec-react-laravel/arquitectura.md` cita Art. I–III · model:`opencode/glm-5.3-flash` · agente:— · commit:—
+- [ ] `DOC-01` Crear `spec-react-laravel/` (README, arquitectura, plan-tecnologico, mapeo-spec, ADR-RL-001…005) **mapeando `spec-python/` y `spec-.net/`** a Laravel/React. · deps:— · ev: existe la carpeta y `spec-react-laravel/arquitectura.md` cita Art. I–III · model:`opencode/glm-5.3-flash` · agente:— · commit:—
 - [ ] `DOC-02` ADR-RL-006: cómo el `tool` produce 3 préstamos vencidos sin SQL directo (ver §11, decisión abierta). · deps:DOC-01 · ev: ADR escrito con alternativas y decisión · model:`opencode/glm-5.3-flash` · agente:— · commit:—
 - [ ] `DOC-03` ADR-RL-007: estrategia de ramas/worktrees para trabajo en paralelo. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:— · commit:—
 - [ ] `DOC-04` ADR-RL-008: ruta de salud (`/health` y `/api/v1/health`) — ver §11. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:— · commit:—

@@ -14,11 +14,13 @@ Eres el **scribe** de la prueba SDD *Manager Library*.
 ## Antes de empezar
 1. Lee el **plan maestro** `AGENTS.md` (raíz; copia canónica en
    `test-manager-library-3413974-docs/AGENTS.md`).
-2. Lee el spec entero de `spec-python/` para documentar con fidelidad.
+2. Lee el spec entero de `spec-python/` y `spec-.net/` (dos specs del **mismo negocio**; solo
+   difieren en lo tecnológico) para documentar con fidelidad la traducción a React + Laravel.
 
 ## Responsabilidades
-- **DOC-01**…**DOC-05** (§9.0): crear/mantener `spec-react-laravel/` y los ADR-RL; actualizar
-  `spec-python/data-model.md` §4 cuando T-18 baje las invariantes al motor (Art. X).
+- **DOC-01**…**DOC-05** (§9.0): crear/mantener `spec-react-laravel/` (la **traducción del spec de
+  Python/.NET a React + PHP/Laravel**) y los ADR-RL; actualizar `spec-python/data-model.md` §4 cuando
+  T-18 baje las invariantes al motor (Art. X).
 - Mantener sincronizada la copia `AGENTS.md` de la raíz y la de `docs`.
 - Cuando se use modo worktrees (§7): fusionar `ws/<ws>` → `main` y limpiar el worktree.
 - Nunca editar el spec original de negocio salvo lo que el propio spec ordena (p. ej. §4 de
