@@ -241,7 +241,7 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 - [*] `DOC-02` ADR-RL-006: cómo el `tool` produce 3 préstamos vencidos sin SQL directo (ver §11, decisión abierta). · deps:DOC-01 · ev: ADR escrito con alternativas y decisión · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:6d36dfe
 - [*] `DOC-03` ADR-RL-007: estrategia de ramas/worktrees para trabajo en paralelo. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:233f51b
 - [*] `DOC-04` ADR-RL-008: ruta de salud (`/health` y `/api/v1/health`) — ver §11. · deps:DOC-01 · ev: ADR escrito · model:`opencode/glm-5.3-flash` · agente:scribe (big-pickle) · commit:e6bca8a
-- [ ] `DOC-05` Tras T-18: actualizar `spec-python/data-model.md` §4 moviendo `ck_book_total_positive` y `ck_user_role` de `pendiente` a `motor` (Art. X). · deps:T-18.1,T-18.2 · ev: §4 sin marcas `pendiente` para esas reglas · model:`opencode/glm-5.3-flash` · agente:— · commit:—
+- [*] `DOC-05` Tras T-18: actualizar `spec-python/data-model.md` §4 moviendo `ck_book_total_positive` y `ck_user_role` de `pendiente` a `motor` (Art. X). · deps:T-18.1,T-18.2 · ev: §4 sin marcas `pendiente` para esas reglas · model:`opencode/glm-5.3-flash` · agente:big-pickle · commit:95fd16d
 
 ### 9.1 WS `api-found` — fundaciones del backend (repo `api`)
 
@@ -315,8 +315,8 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 
 - [ ] `T-16.10` Prueba de contrato que recorre **todas** las rutas de `api-contract.md` y **todos** los códigos de §2. · deps:T-17.1 · ev:`php artisan test --filter=ContractTest` verde · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 - [ ] `T-19.1` Prueba de arquitectura global (Art. I, II y III) ejecutable. · deps:T-17.1 · ev:`php artisan test --filter=ArchitectureTest` verde y falla si se introduce una importación prohibida · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-18.1` Bajar `ck_book_total_positive` a la migración. · deps:T-02.1 · ev:un `INSERT` por `psql` que viole total ≥1 falla · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
-- [ ] `T-18.2` Bajar `ck_user_role` a la migración. · deps:T-02.1 · ev:un `INSERT` con rol inválido falla · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
+- [*] `T-18.1` Bajar `ck_book_total_positive` a la migración. · deps:T-02.1 · ev:PostgreSQL rechaza un `INSERT` con `total_copies=0` · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:6e5c3f2
+- [*] `T-18.2` Bajar `ck_user_role` a la migración. · deps:T-02.1 · ev:PostgreSQL rechaza un `INSERT` con rol inválido · model:`opencode/deepseek-v4-pro` · agente:big-pickle · commit:6e5c3f2
 - [ ] `T-16.11` Prueba de contrato con el sembrador de carga (RNF-1: búsqueda <300 ms con 5000 libros). · deps:TOOL-02 · ev:informe de tiempo reproducible · model:`opencode/deepseek-v4-pro` · agente:— · commit:—
 
 ### 9.7 WS `infra` — contenedores y orquestación (repo `infra`)
@@ -438,3 +438,4 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 19:45 | big-pickle (adapters) | T-14.1,T-14.2,T-15.1,T-15.2 | PENDIENTE → FINALIZADO | 0da01ad | Argon2id, JWT HS256, DiskCoverStorage con validación JPG/PNG ≤2MB |
 | 2026-10-10 20:30 | big-pickle (http) | T-16.1…T-17.3 | PENDIENTE → FINALIZADO | 86af7ec | middleware JWT, controladores, recursos, rutas /api/v1, entrypoint con migraciones/admin |
 | 2026-10-10 13:31 | big-pickle (tool) | TOOL-02,TOOL-03 | PENDIENTE → EN PROGRESO | 955d681 | sembrado paginado/idempotente; 7/7 pruebas Docker verdes; pendiente integración con API real |
+| 2026-10-10 13:37 | big-pickle (verificador) | T-18.1,T-18.2,DOC-05 | PENDIENTE → FINALIZADO | 95fd16d | checks confirmados por PostgreSQL y reglas del modelo marcadas como motor |
