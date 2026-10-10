@@ -352,8 +352,8 @@ Convención de IDs: `T-xx.y` deriva de las tareas `T-xx` del spec. `DOC-nn`, `IN
 ### 9.10 WS `tool` — sembrador de demostración (repo `tool`)
 
 - [*] `TOOL-01` Cliente API + script base (login admin, llamadas a endpoints). · deps:DOC-02 · ev:`docker compose run --rm tool-tests` + `node --test` en el repo `tool` son verdes · model:`opencode/deepseek-v4-flash` · agente:big-pickle · commit:f131932
-- [/] `TOOL-02` Sembrar ≥40 libros y 10 socios. · deps:TOOL-01,T-16.6 · ev:tras correrlo, `GET /books` reporta ≥40 y `GET /members` 10 · model:`opencode/deepseek-v4-flash` · agente:big-pickle (13:31) · commit:3a67fa2
-- [/] `TOOL-03` 15 préstamos + 3 vencidos (según ADR-RL-006). · deps:TOOL-02,T-16.7 · ev:tras correrlo, `GET /loans/overdue` devuelve 3 líneas y el reporte tiene filas · model:`opencode/deepseek-v4-flash` · agente:big-pickle (13:31) · commit:3a67fa2
+- [/] `TOOL-02` Sembrar ≥40 libros y 10 socios. · deps:TOOL-01,T-16.6 · ev:tras correrlo, `GET /books` reporta ≥40 y `GET /members` 10 · model:`opencode/deepseek-v4-flash` · agente:big-pickle (13:31) · commit:955d681
+- [/] `TOOL-03` 15 préstamos + 3 vencidos (según ADR-RL-006). · deps:TOOL-02,T-16.7 · ev:tras correrlo, `GET /loans/overdue` devuelve 3 líneas y el reporte tiene filas · model:`opencode/deepseek-v4-flash` · agente:big-pickle (13:31) · commit:955d681
 - [ ] `TOOL-04` `tool/Dockerfile` y entrada en compose (perfil opcional). · deps:TOOL-03 · ev:`docker compose run --rm tool` corre el sembrador · model:`opencode/deepseek-v4-flash` · agente:— · commit:—
 
 ---
@@ -437,4 +437,4 @@ Cada agente que tome, complete o finalice una tarea añade una fila (más recien
 | 2026-10-10 19:15 | big-pickle (adapters) | T-13.1,T-13.2 | PENDIENTE → FINALIZADO | 48bc1e8 | LoanRepository + concurrencia optimista (version column) |
 | 2026-10-10 19:45 | big-pickle (adapters) | T-14.1,T-14.2,T-15.1,T-15.2 | PENDIENTE → FINALIZADO | 0da01ad | Argon2id, JWT HS256, DiskCoverStorage con validación JPG/PNG ≤2MB |
 | 2026-10-10 20:30 | big-pickle (http) | T-16.1…T-17.3 | PENDIENTE → FINALIZADO | 86af7ec | middleware JWT, controladores, recursos, rutas /api/v1, entrypoint con migraciones/admin |
-| 2026-10-10 13:31 | big-pickle (tool) | TOOL-02,TOOL-03 | PENDIENTE → EN PROGRESO | 3a67fa2 | sembrado paginado/idempotente y verificación de vencidos/reporte; pendiente integración con API real |
+| 2026-10-10 13:31 | big-pickle (tool) | TOOL-02,TOOL-03 | PENDIENTE → EN PROGRESO | 955d681 | sembrado paginado/idempotente; 7/7 pruebas Docker verdes; pendiente integración con API real |
